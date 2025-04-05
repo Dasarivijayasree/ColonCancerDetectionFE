@@ -1,6 +1,11 @@
 /* General App Styles */
 .App {
-  background-color: #f0f4f8;
+  
+  background-image: linear-gradient(
+    to right,
+    #667eea,
+    #764ba2
+  ); /* Gradient Background */
 }
 
 /* Homepage Background Effects */
@@ -1308,24 +1313,51 @@ Brain Tumor Test component */
 
 
 /* Colon Cancer Test Styles */
+/* Colon Cancer Test Styles */
+:root {
+  --primary-blue: #4361ee;
+  --primary-green: #4cc9f0;
+  --danger-red: #f72585;
+  --safe-green: #38b000;
+  --warning-orange: #f77f00;
+  --dark-text: #2b2d42;
+  --light-text: #f8f9fa;
+  --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+body {
+  background: var(--bg-gradient);
+  margin: 0;
+  min-height: 100vh;
+}
+
 .colon-test-container {
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 2rem;
   font-family: 'Arial', sans-serif;
   text-align: center;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
 }
 
 .main-title {
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 2rem;
   font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .upload-form {
   margin: 3rem 0;
+  padding: 2rem;
+  background-color: rgba(67, 97, 238, 0.05);
+  border-radius: 12px;
+  border: 2px dashed rgba(67, 97, 238, 0.2);
 }
 
 .file-upload-wrapper {
@@ -1346,29 +1378,32 @@ Brain Tumor Test component */
 
 .file-upload-button {
   padding: 1rem 2rem;
-  background: #3498db;
+  background: var(--primary-blue);
   color: white;
   border-radius: 8px;
   font-size: 1.2rem;
   font-weight: 600;
   transition: all 0.3s;
   display: inline-block;
+  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
 }
 
 .file-upload-button:hover {
-  background: #2980b9;
-  transform: scale(1.05);
+  background: #3a56d4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(67, 97, 238, 0.3);
 }
 
 .file-upload-name {
   font-size: 1.1rem;
-  color: #7f8c8d;
+  color: var(--dark-text);
   margin-top: 0.5rem;
+  font-weight: 500;
 }
 
 .submit-btn {
   padding: 1rem 2.5rem;
-  background: #2ecc71;
+  background: var(--primary-green);
   color: white;
   border: none;
   border-radius: 8px;
@@ -1377,17 +1412,20 @@ Brain Tumor Test component */
   cursor: pointer;
   transition: all 0.3s;
   margin-top: 1.5rem;
+  box-shadow: 0 4px 6px rgba(76, 201, 240, 0.2);
 }
 
 .submit-btn:disabled {
-  background: #95a5a6;
+  background: #adb5bd;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #27ae60;
-  transform: scale(1.05);
+  background: #3aa8d8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(76, 201, 240, 0.3);
 }
 
 .result-container {
@@ -1396,6 +1434,7 @@ Brain Tumor Test component */
   border-radius: 12px;
   text-align: left;
   max-width: 700px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .result-title {
@@ -1406,37 +1445,63 @@ Brain Tumor Test component */
 }
 
 .danger {
-  background: #ffebee;
-  border-left: 6px solid #e74c3c;
+  background: #fff0f3;
+  border-left: 6px solid var(--danger-red);
+  color: var(--danger-red);
 }
 
 .safe {
-  background: #e8f5e9;
-  border-left: 6px solid #2ecc71;
+  background: #f0fff4;
+  border-left: 6px solid var(--safe-green);
+  color: var(--safe-green);
 }
 
 .medical-info-section {
   font-size: 1.1rem;
   line-height: 1.6;
+  color: var(--dark-text);
 }
 
 .medical-info-section h3 {
   font-size: 1.3rem;
-  color: #2c3e50;
+  color: var(--dark-text);
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.medical-info-section h3::before {
+  margin-right: 10px;
+  font-size: 1.2em;
 }
 
 .medical-info-section ul {
   margin-left: 1.5rem;
+  padding-left: 1rem;
 }
 
 .medical-info-section li {
   margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
 }
 
-/* Emoji sizing */
-.medical-info-section h3::before {
-  margin-right: 10px;
-  font-size: 1.2em;
+.medical-info-section li::before {
+  content: "•";
+  color: var(--primary-blue);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.submit-btn[disabled] {
+  animation: pulse 1.5s infinite;
 }
